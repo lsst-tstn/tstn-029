@@ -1,0 +1,9 @@
+% bibentry template for lsst.bib in https://github.com/lsst/lsst-texmf/blob/main/texmf/bibtex/bib/lsst.bib
+
+@DocuShare{TSTN-029,
+   author = { Tiago Ribeiro },
+    title = {The Engineering Facility Database Large File Object Infrastructure},
+     year = 2022,
+    month = Jan,
+   handle = {TSTN-029},
+      url = {https://tstn-029.lsst.io } }
