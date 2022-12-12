@@ -46,9 +46,43 @@
 
 .. note::
 
-   **This technote is not yet published.**
+   **This technote is in rough draft.**
 
    TBD
+
+
+Introduction
+============
+The Engineering Facility Database (EFD) has a requirement to support objects that are too large or unwieldy for regular SAL commands, events and telemetry.
+The Large File Annex (LFA) is the solution to this requirement.
+The LFA uses Amazon's Simple Storage Service (S3) to store these objects.
+
+
+Architecture
+============
+The LFA uses Amazon's S3 to store objects.
+S3 uses the concept of buckets to organize objects.
+Conceptually for the LFA, buckets correspond to sites i.e. Tucson Test Stand, Summit, Base Test Stand.
+Bucket names have the following format `rubinobs-{s3category}-{s3instance}`.
+s3category refers to the category of bucket, currently there is only LFA defined.
+s3instance refers to the site name.
+
+* tuc - tucson
+* cp - summit
+* ls - base
+
+Each object (file) uploaded to a bucket must have a key (name) that follows the Vera C. Rubin standard.
+The key format is `{fullsalname}/{generator}/{yyyy}/{mm}/{dd}/{fullsalname}-{generator}-{other}{suffix}`
+
+:fullsalname: Refers to full CSC name including index name if exists `{salname}:{salindexname}`.
+:generator: metadata that outlines where the object was generated i.e. FiberSpectrograph using different filters
+:yyyy-mm-dd: Refers to the observing day, which does not turnover during the night observing.
+:other: Extra metadata
+:suffix: object extension i.e. fits
+
+Client Support
+==============
+`Adding LFA support using salobj <https://ts-salobj.lsst.io/salobj_cscs.html#large-file-annex-writer>`_
 
 .. Add content here.
 .. Do not include the document title (it's automatically added from metadata.yaml).
